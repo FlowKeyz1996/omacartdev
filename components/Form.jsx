@@ -1,21 +1,16 @@
 // components/FormComponent.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
 const FormComponent = ({ isRegisterPage }) => {
+  const { register, handleSubmit, setValue } = useForm();
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    name: isRegisterPage ? '' : null,
-    email: '',
-    password: '',
-  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (formData) => {
     try {
       const apiUrl = isRegisterPage
-        ? 'https://devapi.omacart.com/signup'
+        ? 'https://devapi.omacart.com/signupapi/signup'
         : 'https://devapi.omacart.com/login';
 
       const response = await fetch(apiUrl, {
@@ -26,11 +21,11 @@ const FormComponent = ({ isRegisterPage }) => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok &&) {
+      if (response.ok) {
         const responseData = await response.json();
 
         // Handle successful authentication
-        alert('Authentication successful:', responseData);
+        console.log('Authentication successful:', responseData);
 
         // Redirect to the dashboard page after successful authentication
         router.push('/dashboard');
@@ -45,19 +40,27 @@ const FormComponent = ({ isRegisterPage }) => {
   };
 
   return (
-    <div className="form-container">
-      <form onSubmit={handleSubmit}>
+    <div className="form-container w-full max-w-md mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="form-container flex flex-col w-full max-w-md mx-auto">
+      {isRegisterPage ? (
+        <h1 className="text-2xl font-bold mb-[5rem] font-inter">Sign Up</h1>
+      ) : (
+        <h1 className="text-2xl font-bold mb-4 items-center ju">Welcome Back</h1>
+        
+      )}
+      </div>
+     
         {isRegisterPage && (
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-              Name
+              Name*
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              value={formData.name || ''}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              {...register('name')}
               className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
               placeholder="Enter your name"
             />
@@ -66,14 +69,13 @@ const FormComponent = ({ isRegisterPage }) => {
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-            Email
+            Email*
           </label>
           <input
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            {...register('email')}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your email"
           />
@@ -81,35 +83,36 @@ const FormComponent = ({ isRegisterPage }) => {
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Password
+            Password*
           </label>
           <input
             type="password"
             id="password"
             name="password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            {...register('password')}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your password"
           />
+          {isRegisterPage ? (<small>less than later</small>) : (<></>)}
         </div>
-
+        <button
+          type="submit"
+          className={`bg-[#27779B] mt-[7rem] mb-[5rem] text-white px-4 py-2 rounded-md ${isRegisterPage ? 'w-full' : ''}`}
+        >
+          {isRegisterPage ? 'Get Started' : 'Log in'}
+        </button>
+    
         {isRegisterPage ? (
-          <p>
-            Already have an account? <a href="/login">Log in</a>
+          <p className="text-[#475467]  flex items-center justify-center">
+            Already have an account? <a href="/login" className="text-[#27779B]">Log in</a>
           </p>
         ) : (
-          <p>
+          <p className="text-[#475467]">
             Don't have an account? <a href="/register">Register</a>
           </p>
         )}
 
-        <button
-          type="submit"
-          className={`bg-blue-500 text-white px-4 py-2 rounded-md ${isRegisterPage ? 'w-full' : ''}`}
-        >
-          {isRegisterPage ? 'Register' : 'Log in'}
-        </button>
+        
       </form>
     </div>
   );
