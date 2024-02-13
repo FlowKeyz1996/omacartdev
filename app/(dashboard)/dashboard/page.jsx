@@ -1,5 +1,5 @@
 import React from 'react';
-import SidebarMenu from '@/components/SideBarMenu';
+import SidebarMenu from '@/components/SidebarMenu';
 import Cards from '@/components/Cards';
 import Courses from '@/components/Courses';
 
