@@ -2,7 +2,6 @@ import React from 'react';
 import SidebarMenu from '@/components/SideBarMenu';
 import Cards from '@/components/Cards';
 import Courses from '@/components/Courses';
-import Acts from '@/components/Acts';
 
 const page = () => {
   return (
