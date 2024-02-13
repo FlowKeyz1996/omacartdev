@@ -1,33 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Omacartdev
+
+This is a simple authentication app built with Next.js, Tailwind CSS, and API integration.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js and npm installed on your machine.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/Flowkeyz1996/omacartdev
+   cd omacartdev
+   npm install
+   npm run dev
 
-## Learn More
+   Open http://localhost:3000 to view the app in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+Project Structure
+components/: Reusable UI components.
+app/: Next.js app router.
+styles/: Tailwind CSS styles.
+utils/: Utility functions, including API integration.
+constants/:For constants of the project
+Technologies Used
+Next.js
+Tailwind CSS
+React Hook Form
+@headlessui/react
+API Endpoints
+Sign Up: https://devapi.omacart.com/signup
+Sign In: https://devapi.omacart.com/login
+Author
+Your Name
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 ## Deploy on Vercel
 
