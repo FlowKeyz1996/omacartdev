@@ -25,13 +25,13 @@ const FormComponent = ({ isRegisterPage }) => {
         const responseData = await response.json();
 
         // Handle successful authentication
-        console.log('Authentication successful:', responseData);
+        alert('Authentication successful:', responseData);
 
         // Redirect to the dashboard page after successful authentication
         router.push('/dashboard');
       } else {
         // Handle authentication error
-        console.error('Authentication error:', response.status);
+        alert('Authentication error:', response.status);
       }
     } catch (error) {
       // Handle fetch error
@@ -46,7 +46,10 @@ const FormComponent = ({ isRegisterPage }) => {
       {isRegisterPage ? (
         <h1 className="text-2xl font-bold mb-[5rem] font-inter">Sign Up</h1>
       ) : (
-        <h1 className="text-2xl font-bold mb-4 items-center ju">Welcome Back</h1>
+        <div>
+        <h1 className="text-2xl font-bold mb-4 items-center flex justify-center ">Welcome Back</h1>
+        <p className="items-center flex justify-center mt-4 mb-[2rem] text-[#475467] ">Welcome back! Please enter your details.</p>
+        </div>
         
       )}
       </div>
@@ -93,22 +96,27 @@ const FormComponent = ({ isRegisterPage }) => {
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your password"
           />
-          {isRegisterPage ? (<small>less than later</small>) : (<></>)}
+          {isRegisterPage ? (<small className="text-[#475467]">Must be at least 8 characters, uppercase letter.</small>) : (<div className="flex justify-between mt-7">
+           <p className="text-sm">Remember for 30 days</p>
+           <a href="/" className="text-sm">forgot Password</a>
+          </div>)}
         </div>
+        
         <button
-          type="submit"
-          className={`bg-[#27779B] mt-[7rem] mb-[5rem] text-white px-4 py-2 rounded-md ${isRegisterPage ? 'w-full' : ''}`}
+        type="submit"
+        className={`bg-[#27779B] ${isRegisterPage ? 'mt-[7rem] mb-[5rem]' : 'mt-3[rem] mb-[5rem]'} text-white px-4 py-2 rounded-md ${isRegisterPage ? 'w-full' : 'mt-4 w-full'}`}
         >
-          {isRegisterPage ? 'Get Started' : 'Log in'}
-        </button>
+       {isRegisterPage ? 'Get Started' : 'Log in'}
+       </button>
+
     
         {isRegisterPage ? (
           <p className="text-[#475467]  flex items-center justify-center">
-            Already have an account? <a href="/login" className="text-[#27779B]">Log in</a>
+            Already have an account? <a href="/" className="text-[#27779B]">Log in</a>
           </p>
         ) : (
-          <p className="text-[#475467]">
-            Don't have an account? <a href="/register">Register</a>
+          <p className="text-[#475467] flex items-center justify-center">
+            Don't have an account? <a href="/register" className="text-[#27779B]">Sign Up</a>
           </p>
         )}
 
