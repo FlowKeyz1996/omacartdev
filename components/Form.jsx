@@ -112,7 +112,7 @@ const{
               required :"password is required", 
               validate: (value) => {
               if (value.length < 5 || !value.match(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/)){
-                  return "Password must be at least 5 characters and should contain one uppercase letter and special letter"
+                  return "Password must be at least 8 characters and should contain one uppercase letter and special letter"
               }
               },
           })}
