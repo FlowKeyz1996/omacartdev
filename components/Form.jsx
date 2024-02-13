@@ -4,13 +4,19 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
 const FormComponent = ({ isRegisterPage }) => {
-  const { register, handleSubmit, setValue } = useForm();
+//   const { register, handleSubmit, setValue } = useForm();
+const{
+    register,
+    handleSubmit,
+    watch,
+    formState:{ errors },
+} = useForm();
   const router = useRouter();
 
   const onSubmit = async (formData) => {
     try {
       const apiUrl = isRegisterPage
-        ? 'https://devapi.omacart.com/signupapi/signup'
+        ? 'https://devapi.omacart.com/signup'
         : 'https://devapi.omacart.com/login';
 
       const response = await fetch(apiUrl, {
@@ -25,7 +31,7 @@ const FormComponent = ({ isRegisterPage }) => {
         const responseData = await response.json();
 
         // Handle successful authentication
-        alert('Authentication successful:', responseData);
+        alert('Yay!! Authenticated successfully!! Welcome!:', responseData);
 
         // Redirect to the dashboard page after successful authentication
         router.push('/dashboard');
@@ -60,6 +66,11 @@ const FormComponent = ({ isRegisterPage }) => {
               Name*
             </label>
             <input
+             defaultValue=""
+             {...register("name", {
+             required :"name is required", 
+             
+         })}
               type="text"
               id="name"
               name="name"
@@ -67,6 +78,9 @@ const FormComponent = ({ isRegisterPage }) => {
               className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
               placeholder="Enter your name"
             />
+            {errors.username && (
+                <p className='text-red-500'>{errors.username.message}</p>
+            )}
           </div>
         )}
 
@@ -75,13 +89,19 @@ const FormComponent = ({ isRegisterPage }) => {
             Email*
           </label>
           <input
+          defaultValue=""
+          {...register("email", {
+              required :"email is required", 
+          })}
             type="email"
             id="email"
             name="email"
-            {...register('email')}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your email"
           />
+          {errors.email && (
+                <p className='text-red-500'>{errors.email.message}</p>
+            )}
         </div>
 
         <div className="mb-4">
@@ -89,17 +109,32 @@ const FormComponent = ({ isRegisterPage }) => {
             Password*
           </label>
           <input
+          defaultValue=""
+          {...register("password", {
+              required :"password is required", 
+              validate: (value) => {
+              if (value.length < 5 || !value.match(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/)){
+                  return "Password must be at least 5 characters and contain at least one special character"
+              }
+              },
+          })}
             type="password"
             id="password"
             name="password"
-            {...register('password')}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your password"
           />
-          {isRegisterPage ? (<small className="text-[#475467]">Must be at least 8 characters, uppercase letter.</small>) : (<div className="flex justify-between mt-7">
+           {/* {errors.password && (
+                <p className='text-red-500'>{errors.password.message}</p>
+            )} */}
+
+          {isRegisterPage ? (<small className="text-[#475467]">Must be at least 8 characters</small>) : (<div className="flex justify-between mt-7">
            <p className="text-sm">Remember for 30 days</p>
            <a href="/" className="text-sm">forgot Password</a>
           </div>)}
+          {errors.password && (
+                <p className='text-red-500'>{errors.password.message}</p>
+            )}
         </div>
         
         <button

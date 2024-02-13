@@ -6,7 +6,7 @@ import { faSearch, faList } from '@fortawesome/free-solid-svg-icons';
 
 const SidebarMenu = () => {
   return (
-    <div className="bg-[#27779B]  text-white w-64 h-screen p-4 flex flex-col justify-between">
+    <div className="bg-[#27779B]  text-white w-64 h-screen p-4 flex flex-col justify-between fixed md:left-0 md:bottom-0 md:top-0">
       <div>
         {/* <h2 className="text-xl font-bold mb-4">Sidebar Menu</h2> */}
         <div className="mb-4 mt-[5rem]">
