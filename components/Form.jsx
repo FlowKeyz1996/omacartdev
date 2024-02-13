@@ -4,11 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
 const FormComponent = ({ isRegisterPage }) => {
-//   const { register, handleSubmit, setValue } = useForm();
 const{
     register,
     handleSubmit,
-    watch,
     formState:{ errors },
 } = useForm();
   const router = useRouter();
@@ -114,7 +112,7 @@ const{
               required :"password is required", 
               validate: (value) => {
               if (value.length < 5 || !value.match(/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/)){
-                  return "Password must be at least 5 characters and contain at least one special character"
+                  return "Password must be at least 5 characters and should contain one uppercase letter and special letter"
               }
               },
           })}
@@ -124,9 +122,7 @@ const{
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200"
             placeholder="Enter your password"
           />
-           {/* {errors.password && (
-                <p className='text-red-500'>{errors.password.message}</p>
-            )} */}
+          
 
           {isRegisterPage ? (<small className="text-[#475467]">Must be at least 8 characters</small>) : (<div className="flex justify-between mt-7">
            <p className="text-sm">Remember for 30 days</p>

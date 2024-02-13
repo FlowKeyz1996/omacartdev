@@ -8,31 +8,30 @@ const SidebarMenu = () => {
   return (
     <div className="bg-[#27779B]  text-white w-64 h-screen p-4 flex flex-col justify-between fixed md:left-0 md:bottom-0 md:top-0">
       <div>
-        {/* <h2 className="text-xl font-bold mb-4">Sidebar Menu</h2> */}
         <div className="mb-4 mt-[5rem]">
           <input type="text" placeholder="Search" className="w-full p-2 bg-[#475467]  border-none rounded-md text-white" />
         </div>
         <div className="flex-col space-y-2">
           <Link href="/dashboard"className="flex hover:bg-[#344054] p-2 rounded">
-            <img src="/home-line.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">{/* Add your icon here */}Home</p>
+            <img src="/home-line.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">Home</p>
           </Link>
           <Link href="/dashboard" className="flex hover:bg-[#344054] p-2 rounded">
           <img src="/bar-chart-square-02.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded ">courses</p>
           </Link>
           <Link href="/dashboard" className="flex hover:bg-[#344054]  p-2 rounded">
-          <img src="/users-01.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">{/* Add your icon here */}student</p>
+          <img src="/users-01.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">student</p>
           </Link>
           <Link href="/dashboard"className="flex hover:bg-[#344054] p-2 rounded">
-          <img src="/layers-three-01.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">{/* Add your icon here */}Wallet</p>
+          <img src="/layers-three-01.svg" alt=""/><p className="hover:bg-[#344054] p-2 rounded">Wallet</p>
           </Link>
         </div>
       </div>
       <div className="flex-col space-y-2">
         <Link href="/dashboard" className="flex hover:bg-[#344054] p-2 rounded">
-        <img src="/life-buoy-01.svg" alt=""/><p className="hover:bg-[#344054]  p-2 rounded">{/* Add your icon here */}Support</p>
+        <img src="/life-buoy-01.svg" alt=""/><p className="hover:bg-[#344054]  p-2 rounded">Support</p>
         </Link>
         <Link href="/dashboard" className="flex hover:bg-[#344054] p-2 rounded">
-        <img src="/settings-01.svg" alt=""/><p className="hover:bg-[#344054]  p-2 rounded">{/* Add your icon here */}Settings</p>
+        <img src="/settings-01.svg" alt=""/><p className="hover:bg-[#344054]  p-2 rounded">Settings</p>
         </Link>
       </div>
       <div className="dashboard">
