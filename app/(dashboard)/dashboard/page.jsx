@@ -16,7 +16,6 @@ const page = () => {
         <Cards/>
         <div className="flex flex-col">
         <Courses/>
-        <Acts/>
         </div>
       </div>
     </div>
